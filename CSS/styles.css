@@ -1,0 +1,293 @@
+/* Color Palette */
+
+
+
+:root {
+    --color-text: #0B132B;
+    --color-link: #F4D35E;
+    --color-header-main: #1C2541;
+    --color-header-alt: #3A506B;
+    --color-footer-bg: #0B132B;
+    --color-background: #F8F9FA;
+}
+
+/* CSS Reset */
+
+* {
+    box-sizing: border-box;
+}
+
+/* Text Properties */
+
+body {
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1.6rem;
+    background-color: var(--color-background);
+    color: var(--color-text);
+    margin: 0;
+}
+
+h1 {
+    font-size: 6rem;
+    color: var(--color-header-main);
+    text-align: center;
+
+    @media (width < 738px) {
+        font-size: 3rem;
+    }
+
+}
+
+h2 {
+    font-size: 3rem;
+    color: var(--color-header-alt);
+}
+
+/* Wrapper */
+
+.wrapper {
+    max-inline-size: 80vw; /* set the div to have a maximum width of 80% of the browser window */
+    margin-inline: auto; /* automatically distribute the remaining 10% of the width evenly on both sides of the div */
+    padding-block: 1rem; /* consistent vertical padding */
+}
+
+/* Main content sections */
+main {
+    padding-block: 2rem;
+}
+
+main section {
+    padding-block: 1.5rem;
+}
+
+/* Images */
+
+.banner {
+    inline-size: 100%;
+}
+
+
+/* Lists */
+
+ul {
+    list-style-type: circle;
+}
+
+
+/* Links */
+
+a {
+    color: var(--color-footer-bg);
+    /* background-color: yellow; */
+    padding-inline: 10px;
+}
+
+a:hover,
+a:focus-visible {
+    color: var(--color-link);
+}
+
+
+/* Navbar (using flexbox) */
+
+header {
+    display: flex;  /* header becomes a flexbox element */
+    flex-direction: row; /* this is the default flex-direction, this means this flex container is a row, and its children are columns */
+    justify-content: space-between; /* distributes the remaining space between the direct children of the nav-bar  */
+}
+
+.nav-list {
+    list-style-type: none; /* turn off bullet points */
+    display: flex; /* make the ul a flex container as well, so we can make its elements more easy to distribute */
+    flex-direction: row; /* this ul is also a row, so its children are columns */
+    gap: 2vw; /* add a gap of 2vw (= 2% of the viewport width) */
+}
+
+.nav-list li {
+    flex: 1;
+    /* flex: 1 is a shorthand for:
+                    flex-basis: 0%; <- this says, make each element take up 0% of the width of its parent container
+                    flex-shrink: 1; <- with multiple elements, this is saying all elements should shrink by the same amount to fit into the parent container
+                    flex-grow: 1;   <- same as flex-shrink, but grow to fit the container instead
+                                */
+}
+
+.nav-list a {
+    text-decoration: none; /* removes the underline from the links in the nav-list  */
+}
+
+
+/* Footer */
+
+footer {
+    text-align: center; /* aligns text to the center of a block; inherited by all block elements in the footer (e.g., the <p>) */
+    background-color: var(--color-footer-bg); /* sets the background color using the custom property defined in the :root selector at the top of this document */
+    color: white; /* sets text color to white */
+    padding: 50px; /* sets a padding of 50px to each side of the footer element; padding keeps the background color */
+    border-block: 2px solid var(--color-text); /* sets a solid black border 2 pixels wide around the padding box of the footer (border-block means the border is only applied to the top and bottom of the footer) */
+}
+
+
+/* Cards (using grid) */
+
+.card-container {
+    display: grid; /* use CSS grid, this container becomes a grid, its children are cells in that grid */
+    grid-auto-flow: column; /* set each child element of the card-container to be a column in the grid */
+    grid-auto-columns: 40%; /* set the width of each column of the grid to 40% of the width of the parent container */
+    grid-column-gap: 2rem;  /* 2rem gap between columns */
+    
+    overflow-x: scroll; /* hides the cards that overflow the container and makes this container scrollable */
+
+    /* TRY: comment out the grid-auto-flow, grid-auto-columns, and overflow-x properties, and uncomment the grid-template-columns property below */
+    /*grid-template-columns: repeat(3, 1fr); /* sets the size of each column to 1fr (1 equal fraction of the width), the fr unit only works for CSS grid 
+                                                repeat(3, 1fr) is the same as writing 1fr 1fr 1fr 
+                                                the number of values given to grid-template-columns determines the number of columns
+                                                    repeat(5, 1fr) would create a grid with 5 columns */
+    /* ALSO TRY: modify the media queries to set a different number of columns at different screen sizes */
+
+    margin-block: 20px; /* add a margin above and below the card container, to space it away from the footer */
+
+    @media (800px <= width < 1200px) {  /* on medium screen widths */
+        grid-auto-columns: 60%;         /* each card gets a slightly larger width */
+    }
+
+    @media (width < 800px) {            /* on smaller screen widths */
+        grid-auto-columns: 100%;        /* card takes up entire width */
+        grid-auto-flow: row;            /* each card is a row */
+        gap: 1rem;
+    }
+}
+
+
+.card { /* style each card */
+    background-color: #eee; 
+    padding: 20px;
+    border: 2px solid grey;
+    border-radius: 20px; /* curves the edges of the border/padding */
+}
+
+.card h2 {
+    background-color: white;
+    inline-size: max-content; /*  */
+    padding: 5px;
+    border-radius: 10px; /* curves the edges of the border/padding */
+}
+
+/* Project cards */
+.project-card {
+    background: var(--color-background);
+    padding: 1.5rem;
+    align-items: center;
+}
+
+.project-card h3 {
+    margin-top: 0;
+    color: var(--color-header-main);
+}
+
+.project-card p {
+    font-size: 1rem;
+    color: var(--color-text);
+    margin: 0.75rem 0;
+}
+
+/* Tech tags */
+.tags {
+    margin-block-end: 1rem;
+}
+
+.tag {
+    display: inline-block;
+    background: var(--color-header-alt);
+    color: white;
+    font-size: 0.8rem;
+    border-radius: 8px;
+    padding: 0.2rem 0.6rem;
+    margin: 0 0.25rem 0.25rem 0;
+}
+
+/* Project buttons container */
+.project-buttons {
+    display: flex;
+    gap: 0.75rem;
+    margin-block-start: 1rem;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+/* Button */
+.btn {
+    display: inline-block;
+    background: var(--color-footer-bg);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    text-decoration: none;
+}
+
+
+/* Style for images */
+img.banner {
+    width: 100%; 
+    max-width: 300px; 
+    height: auto;
+    object-fit: cover; 
+    display: block; 
+    margin: 0 auto; 
+}
+
+/* Contact Section */
+#contact {
+    padding: 2rem;
+    background: var(--color-background);
+    text-align: center;
+}
+
+.contact-info p {
+    margin: 0.5rem 0;
+    font-size: 1rem;
+}
+
+.contact-info a {
+    color: var(--color-text);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.contact-info a:hover,
+.contact-info a:focus-visible {
+    color: var(--color-link);
+}
+
+/* Soccer page - centered text */
+.soccer-page main section:not(#teams):not(#accolades):not(#highlights) {
+    text-align: center;
+}
+
+.soccer-page main section:not(#teams):not(#accolades):not(#highlights) p,
+.soccer-page main section:not(#teams):not(#accolades):not(#highlights) ul {
+    text-align: center;
+}
+
+.soccer-page main section:not(#teams):not(#accolades):not(#highlights) ul {
+    list-style-position: inside;
+}
+
+.soccer-page main section:not(#teams):not(#accolades):not(#highlights) h2 {
+    text-align: center;
+}
+
+/* Exclude Teams, Accolades, and Highlights from centering */
+.soccer-page main #teams,
+.soccer-page main #accolades,
+.soccer-page main #highlights {
+    text-align: left;
+}
+
+.soccer-page main #teams ul,
+.soccer-page main #accolades ul,
+.soccer-page main #highlights ul {
+    text-align: left;
+    list-style-position: outside;
+}
+
